@@ -1,19 +1,37 @@
 $(document).ready(function() {
-  $(".working").hide();
+
+  worstOffenders();
+  
   $(".btn").click(function() {
-  $("#results").empty();
+    $("#results").empty();
     getPlaceList($("#name").val());
   });
 
   $("#results").on("click", ".details", function() {
-  $("#results").empty();
+    $("#results").empty();
     getInspectionDetails($(this).attr("id"));
   });
 });
 
 var base_url = 'https://health.data.ny.gov/resource/cnih-y5dw.json';
 
-// Get list of inspections by name
+// Display worst offenders on page load.
+
+function worstOffenders() {
+  $(".working").hide();
+  $("#results").append("<h3>Worst Offenders</h3>");
+  var url = base_url + '?county=Onondaga&$select=operation_name,%20nys_health_operation_id,%20facility_address,%20city&$order=total_critical_violations%20DESC&$limit=10';
+  requestJSON(url, function(json) {
+    $("#results").append("<table class=\"table table-striped table-bordered table-hover\">");
+    $("#results table").append("<tr><th>Name</th><th>Address</th><th>City</th></tr>");
+    for(var i=0; i<json.length; i++) {
+      $("#results table").append("<tr><td><a class=\"details\" id=\"" + json[i].nys_health_operation_id + "\" href=\"#\">" + json[i].operation_name + "</td><td>" + toTitleCase(json[i].facility_address) + "</td><td>" + json[i].city + "</td></tr>");
+    }
+    $("#results table").append("</table>");
+  });
+}
+
+// Get list of inspections by name.
 function getPlaceList(name) {
   var url = base_url + '?county=Onondaga&$select=operation_name,%20nys_health_operation_id,%20facility_address,%20city&$where=starts_with(operation_name,%20%27' + name + '%27)';
   requestJSON(url, function(json) {
@@ -26,7 +44,7 @@ function getPlaceList(name) {
   });
 }
 
-// Get details of specific inspection
+// Get details of specific inspection.
 function getInspectionDetails(id) {
   var url = base_url + '?nys_health_operation_id=' + id;
   requestJSON(url, function(json) {
@@ -68,8 +86,8 @@ function toTitleCase(str) {
 
 // Utility method to highlight critical violations.
 function highlightCritical(str) {
-	return str.replace('Critical Violation', '<strong>Critical Violation</strong>')
-	.replace('[RED]', '<span class="red">[RED]</span>')
-	.replace(/;/g, '<br/><br/>');
+	return str.replace(/;/g, '<br/><br/>');
+  //.replace('Critical Violation', '<strong>Critical Violation</strong>')
+	//.replace('[RED]', '<span class="red">[RED]</span>');
 }
 
