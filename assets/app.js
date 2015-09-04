@@ -48,7 +48,7 @@ function requestJSON(url, callback) {
   $.ajax({
     url: url,
     beforeSend: function() {
-      // $(".working").show();
+      $(".working").show();
     },
     complete: function(xhr) {
        $(".working").hide();

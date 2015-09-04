@@ -12,6 +12,10 @@ body {
 	font-size: 125%;
 }
 
+.about {
+	text-align: center;
+}
+
 .red {
 	color: red;
 }
