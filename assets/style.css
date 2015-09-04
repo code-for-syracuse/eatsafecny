@@ -1,0 +1,21 @@
+body {
+	margin-top: 65px;
+}
+
+.working {
+	text-align: center;
+}
+
+.middle {
+	margin-bottom: 35px;
+	text-align: center;
+	font-size: 125%;
+}
+
+.red {
+	color: red;
+}
+
+.table {
+	margin-top: 10px;
+}
