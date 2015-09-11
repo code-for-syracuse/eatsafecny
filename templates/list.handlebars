@@ -1,0 +1,21 @@
+{{#if Places.places}}
+<h4>{{Places.title}}</h4>
+<table class="table table-striped table-bordered table-hover">
+<tr>
+  <th>Name</th>
+  <th>Address</th>
+  <th>City</th>
+  <th>Date</th>
+</tr>
+{{#each Places.places}}
+<tr>
+  <td><a class="details" id="{{nys_health_operation_id}}" href="#">{{operation_name}}</td>
+  <td>{{{toTitleCase facility_address}}}</td>
+  <td>{{city}}</td>
+  <td>{{{formatDate date}}}</td>
+</tr>
+{{/each}}
+</table>
+{{else}}
+<div class="alert alert-warning working" role="alert">No results found</div>
+{{/if}}
