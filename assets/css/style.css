@@ -1,26 +1,25 @@
 body {
 	margin-top: 65px;
 }
-
 .working {
 	margin-top: 15px;
 	text-align: center;
 }
-
 .middle {
 	margin-bottom: 35px;
 	text-align: center;
 	font-size: 125%;
 }
-
 .about {
 	text-align: center;
 }
-
 .red {
 	color: red;
 }
-
 .table {
 	margin-top: 10px;
+}
+
+.error {
+	border-color: red;
 }

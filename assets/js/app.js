@@ -1,24 +1,34 @@
 $(document).ready(function() {
 
+  // Hide the promt telling the user that data is being fetched.
   $(".working").hide();
+
+  // Display worst offenders and most recent inspections on home page.
   worstOffenders();
   mostRecent();
   
+  // Handler for search field.
   $("#search").click(function() {
     var searchText = $("#name").val();
     if(searchText == "") {
-      clearContents();
-      $("#results").append("<div class=\"alert alert-warning working\" role=\"alert\">Enter a name or partial name</div>");
+      $("#name").addClass("error");
     }
     else {
       searchList(searchText);
     }
   });
 
+  // If the user focuses on the search field, remove any indication ofbad entry.
+  $("#name").focus(function(){
+    $(this).removeClass("error");
+  });
+
+  // Handler for clearing page contents.
   $("#clear").click(function() {
     clearContents();
   });
 
+  // Handler for displaying inspection details.
   $(".display").on("click", ".details", function() {
     getInspectionDetails($(this).attr("id"));
   });
@@ -51,7 +61,10 @@ function getInspectionDetails(id) {
   requestJSON(url, function(json) {
     $("#results").append("<h4>Details</h4>");
     details = Handlebars.templates.detail({ Details : json[0] });
-    $(results).append(details);
+    $("#results").append(details);
+    if($("#name").val().length > 0) {
+      $("#search").text("List");
+    }   
   });
 }
 
@@ -62,6 +75,7 @@ function getPlaceList (url, id, title) {
     results.places = json
     placesList = Handlebars.templates.list({ Places : results });
     $(id).append(placesList);
+    $("#search").text("Search");
   })
 }
 
@@ -83,6 +97,5 @@ function requestJSON(url, callback) {
 // Utility method to clear div contents
 function clearContents() {
   $(".display div").empty();
-  $("#name").val("");
 }
 
