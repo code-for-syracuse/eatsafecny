@@ -1,37 +1,42 @@
 $(document).ready(function() {
-
   // Hide the promt telling the user that data is being fetched.
   $(".working").hide();
+    // Handler for search field.
+    $("#search").click(function() {
+      var searchText = $("#name").val();
+      if(searchText == "") {
+        $("#name").addClass("error");
+      }
+      else {
+        searchList(searchText);
+      }
+    });
 
-  // Display worst offenders and most recent inspections on home page.
-  worstOffenders();
-  mostRecent();
+    // If the user focuses on the search field, remove any indication ofbad entry.
+    $("#name").focus(function(){
+      $(this).removeClass("error");
+    });
+
+    // Handler for clearing page contents.
+    $("#clear").click(function() {
+      clearContents();
+    });
+
+    // Handler for displaying inspection details.
+    $(".display").on("click", ".details", function() {
+      getInspectionDetails($(this).attr("id"));
+    });
   
-  // Handler for search field.
-  $("#search").click(function() {
-    var searchText = $("#name").val();
-    if(searchText == "") {
-      $("#name").addClass("error");
-    }
+    // If ID parameter used, display detailed resutls.
+    var id = url_query('id');
+    if(id) {
+      getInspectionDetails(id);
+    } 
+    // Display worst offenders and most recent inspections on home page.
     else {
-      searchList(searchText);
+      worstOffenders();
+      mostRecent();
     }
-  });
-
-  // If the user focuses on the search field, remove any indication ofbad entry.
-  $("#name").focus(function(){
-    $(this).removeClass("error");
-  });
-
-  // Handler for clearing page contents.
-  $("#clear").click(function() {
-    clearContents();
-  });
-
-  // Handler for displaying inspection details.
-  $(".display").on("click", ".details", function() {
-    getInspectionDetails($(this).attr("id"));
-  });
 });
 
 // Base URL for API calls.
@@ -55,6 +60,17 @@ function searchList(name) {
   getPlaceList(url, "#results", "Results");
 }
 
+// Method to get list of inspections.
+function getPlaceList (url, id, title) {
+  requestJSON(url, function(json) {
+    results.title = title
+    results.places = json
+    placesList = Handlebars.templates.list({ Places : results });
+    $(id).append(placesList);
+    $("#search").text("Search");
+  })
+}
+
 // Get details of specific inspection.
 function getInspectionDetails(id) {
   var url = base_url + '?nys_health_operation_id=' + id;
@@ -66,17 +82,6 @@ function getInspectionDetails(id) {
       $("#search").text("List");
     }   
   });
-}
-
-// Method to get list of inspections.
-function getPlaceList (url, id, title) {
-  requestJSON(url, function(json) {
-    results.title = title
-    results.places = json
-    placesList = Handlebars.templates.list({ Places : results });
-    $(id).append(placesList);
-    $("#search").text("Search");
-  })
 }
 
 // Method to make API call.
@@ -97,5 +102,18 @@ function requestJSON(url, callback) {
 // Utility method to clear div contents
 function clearContents() {
   $(".display div").empty();
+}
+
+// Parse URL Queries
+function url_query( query ) {
+    query = query.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+    var expr = "[\\?&]"+query+"=([^&#]*)";
+    var regex = new RegExp( expr );
+    var results = regex.exec( window.location.href );
+    if ( results !== null ) {
+        return results[1];
+    } else {
+        return false;
+    }
 }
 
