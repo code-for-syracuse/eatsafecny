@@ -1,20 +1,24 @@
 {{#if Places.places}}
 <h4>{{Places.title}}</h4>
 <table class="table table-striped table-bordered table-hover">
-<tr>
-  <th>Name</th>
-  <th>Address</th>
-  <th>City</th>
-  <th>Date</th>
-</tr>
-{{#each Places.places}}
-<tr>
-  <td class="col-xs-3"><a class="details" id="{{nys_health_operation_id}}" href="#">{{operation_name}}</td>
-  <td class="col-xs-">{{{toTitleCase facility_address}}}</td>
-  <td class="col-xs-">{{city}}</td>
-  <td class="col-xs-">{{{formatDate date}}}</td>
-</tr>
-{{/each}}
+<thead>
+	<tr>
+	  <th>Name</th>
+	  <th>Address</th>
+	  <th>City</th>
+	  <th>Date</th>
+	</tr>
+</thead>
+<tbody>
+	{{#each Places.places}}
+	<tr>
+	  <td class="col-xs-3"><a class="details" id="{{nys_health_operation_id}}" href="#">{{operation_name}}</td>
+	  <td class="col-xs-">{{{toTitleCase facility_address}}}</td>
+	  <td class="col-xs-">{{city}}</td>
+	  <td class="col-xs-">{{{formatDate date}}}</td>
+	</tr>
+	{{/each}}
+	</tbody>
 </table>
 {{else}}
 <div class="alert alert-warning working" role="alert">No results found</div>

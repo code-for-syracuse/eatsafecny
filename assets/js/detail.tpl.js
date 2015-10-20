@@ -3,7 +3,7 @@
 templates['detail'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression, alias3=helpers.helperMissing;
 
-  return "<table class=\"table table-bordered table-hover\">\n  <tr><td>Facility name</td><td><strong>"
+  return "<table class=\"table table-bordered table-striped \">\n  <tr><td>Facility name</td><td><strong>"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.Details : depth0)) != null ? stack1.operation_name : stack1), depth0))
     + "<strong></td></tr>\n  <tr><td>Shareable link</td><td><a title=\"Copy this link to share results\" href=\"http://eatsafecny.org/?id="
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.Details : depth0)) != null ? stack1.nys_health_operation_id : stack1), depth0))
