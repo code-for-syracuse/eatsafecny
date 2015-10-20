@@ -11,15 +11,15 @@ templates['list'] = template({"1":function(container,depth0,helpers,partials,dat
 },"2":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=container.escapeExpression;
 
-  return "<tr>\n  <td><a class=\"details\" id=\""
+  return "<tr>\n  <td class=\"col-xs-3\"><a class=\"details\" id=\""
     + alias3(((helper = (helper = helpers.nys_health_operation_id || (depth0 != null ? depth0.nys_health_operation_id : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"nys_health_operation_id","hash":{},"data":data}) : helper)))
     + "\" href=\"#\">"
     + alias3(((helper = (helper = helpers.operation_name || (depth0 != null ? depth0.operation_name : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"operation_name","hash":{},"data":data}) : helper)))
-    + "</td>\n  <td>"
+    + "</td>\n  <td class=\"col-xs-\">"
     + ((stack1 = (helpers.toTitleCase || (depth0 && depth0.toTitleCase) || alias1).call(depth0,(depth0 != null ? depth0.facility_address : depth0),{"name":"toTitleCase","hash":{},"data":data})) != null ? stack1 : "")
-    + "</td>\n  <td>"
+    + "</td>\n  <td class=\"col-xs-\">"
     + alias3(((helper = (helper = helpers.city || (depth0 != null ? depth0.city : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"city","hash":{},"data":data}) : helper)))
-    + "</td>\n  <td>"
+    + "</td>\n  <td class=\"col-xs-\">"
     + ((stack1 = (helpers.formatDate || (depth0 && depth0.formatDate) || alias1).call(depth0,(depth0 != null ? depth0.date : depth0),{"name":"formatDate","hash":{},"data":data})) != null ? stack1 : "")
     + "</td>\n</tr>\n";
 },"4":function(container,depth0,helpers,partials,data) {
