@@ -1,7 +1,9 @@
 $(document).ready(function() {
-  // Hide the promt telling the user that data is being fetched.
-  $(".working").hide();
-    // Handler for search field.
+
+  	// Hide the promt telling the user that data is being fetched.
+  	$(".working").hide();
+
+    // Handlers for search field.
     $("#search").click(function() {
       var searchText = $("#name").val();
       if(searchText == "") {
@@ -11,8 +13,14 @@ $(document).ready(function() {
         searchList(searchText);
       }
     });
+    $("#name").keypress(function(event) {
+		var keycode = (event.keyCode ? event.keyCode : event.which);
+		if(keycode == '13'){
+			$("#search").trigger('click');	
+		}
+    });
 
-    // If the user focuses on the search field, remove any indication ofbad entry.
+    // If the user focuses on the search field, remove any indication of bad entry.
     $("#name").focus(function(){
       $(this).removeClass("error");
     });
@@ -77,10 +85,7 @@ function getInspectionDetails(id) {
   requestJSON(url, function(json) {
     $("#results").append("<h4>Details</h4>");
     details = Handlebars.templates.detail({ Details : json[0] });
-    $("#results").append(details);
-    if($("#name").val().length > 0) {
-      $("#search").text("List");
-    }   
+    $("#results").append(details);  
   });
 }
 
