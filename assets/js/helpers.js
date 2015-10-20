@@ -18,5 +18,5 @@ Handlebars.registerHelper('highlightCritical', function(str) {
 
 // Helper method to make a full address string.
 Handlebars.registerHelper('makeAddressString', function(str) {
-	return Handlebars.helpers.toTitleCase(str.facility_address) + " " + str.city + ", " + str.food_service_facility_state + " " + str.zip_code;
+	return Handlebars.helpers.toTitleCase(str.facility_address) + " " + Handlebars.helpers.toTitleCase(str.city) + ", " + str.food_service_facility_state + " " + str.zip_code;
 });

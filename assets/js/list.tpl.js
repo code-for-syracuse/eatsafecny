@@ -18,7 +18,7 @@ templates['list'] = template({"1":function(container,depth0,helpers,partials,dat
     + "</td>\n	  <td class=\"col-xs-\">"
     + ((stack1 = (helpers.toTitleCase || (depth0 && depth0.toTitleCase) || alias1).call(depth0,(depth0 != null ? depth0.facility_address : depth0),{"name":"toTitleCase","hash":{},"data":data})) != null ? stack1 : "")
     + "</td>\n	  <td class=\"col-xs-\">"
-    + alias3(((helper = (helper = helpers.city || (depth0 != null ? depth0.city : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"city","hash":{},"data":data}) : helper)))
+    + ((stack1 = (helpers.toTitleCase || (depth0 && depth0.toTitleCase) || alias1).call(depth0,(depth0 != null ? depth0.city : depth0),{"name":"toTitleCase","hash":{},"data":data})) != null ? stack1 : "")
     + "</td>\n	  <td class=\"col-xs-\">"
     + ((stack1 = (helpers.formatDate || (depth0 && depth0.formatDate) || alias1).call(depth0,(depth0 != null ? depth0.date : depth0),{"name":"formatDate","hash":{},"data":data})) != null ? stack1 : "")
     + "</td>\n	</tr>\n";
