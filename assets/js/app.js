@@ -25,11 +25,6 @@ $(document).ready(function() {
       $(this).removeClass("error");
     });
 
-    // Handler for clearing page contents.
-    $("#clear").click(function() {
-      clearContents();
-    });
-
     // Handler for displaying inspection details.
     $(".display").on("click", ".details", function() {
       getInspectionDetails($(this).attr("id"));
