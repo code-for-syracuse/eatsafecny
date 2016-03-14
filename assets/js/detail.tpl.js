@@ -19,7 +19,7 @@ templates['detail'] = template({"compiler":[7,">= 4.0.0"],"main":function(contai
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.Details : depth0)) != null ? stack1.total_critical_violations : stack1), depth0))
     + "</td></tr>\n  <tr><td class=\"col-xs-2\">Critical &amp; not corrected</td><td>"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.Details : depth0)) != null ? stack1.total_crit_not_corrected : stack1), depth0))
-    + "</td></tr>\n  <tr><td class=\"col-xs-2\">Inspction Details</td><td>"
+    + "</td></tr>\n  <tr><td class=\"col-xs-2\">Inspection Details</td><td>"
     + ((stack1 = (helpers.highlightCritical || (depth0 && depth0.highlightCritical) || alias3).call(depth0,((stack1 = (depth0 != null ? depth0.Details : depth0)) != null ? stack1.violations : stack1),{"name":"highlightCritical","hash":{},"data":data})) != null ? stack1 : "")
     + "</td></tr>\n</table>";
 },"useData":true});
