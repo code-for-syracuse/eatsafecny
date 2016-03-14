@@ -1,45 +1,49 @@
 $(document).ready(function() {
 
-  	// Hide the promt telling the user that data is being fetched.
-  	$(".working").hide();
+  // Hide the promt telling the user that data is being fetched.
+  $(".working").hide();
 
-    // Handlers for search field.
-    $("#search").click(function() {
-      var searchText = $("#name").val();
-      if(searchText == "") {
-        $("#name").addClass("error");
-      }
-      else {
-        searchList(searchText);
-      }
-    });
-    $("#name").keypress(function(event) {
-		var keycode = (event.keyCode ? event.keyCode : event.which);
-		if(keycode == '13'){
-			$("#search").trigger('click');	
-		}
-    });
-
-    // If the user focuses on the search field, remove any indication of bad entry.
-    $("#name").focus(function(){
-      $(this).removeClass("error");
-    });
-
-    // Handler for displaying inspection details.
-    $(".display").on("click", ".details", function() {
-      getInspectionDetails($(this).attr("id"));
-    });
-  
-    // If ID parameter used, display detailed resutls.
-    var id = url_query('id');
-    if(id) {
-      getInspectionDetails(id);
-    } 
-    // Display worst offenders and most recent inspections on home page.
-    else {
-      worstOffenders();
-      mostRecent();
+  // Handlers for search field.
+  $("#search").click(function() {
+    var searchText = $("#name").val();
+    if(searchText == "") {
+      $("#name").addClass("error");
     }
+    else {
+      searchList(searchText);
+    }
+  });
+
+  // User presses enter.
+  $("#name").keypress(function(event) {
+  var keycode = (event.keyCode ? event.keyCode : event.which);
+  if(keycode == '13'){
+  	$("#search").trigger('click');	
+  }
+  });
+
+  // If the user focuses on the search field, remove any indication of bad entry.
+  $("#name").focus(function(){
+    $(this).removeClass("error");
+  });
+
+  // Handler for displaying inspection details.
+  $(".display").on("click", ".details", function() {
+    getInspectionDetails($(this).attr("id"));
+  });
+
+  // If ID parameter used, display detailed results.
+  var id = url_query('id');
+  if(id) {
+    getInspectionDetails(id);
+  } 
+  
+  // Display worst offenders and most recent inspections on home page.
+  else {
+    worstOffenders();
+    mostRecent();
+  }
+
 });
 
 // Base URL for API calls.
