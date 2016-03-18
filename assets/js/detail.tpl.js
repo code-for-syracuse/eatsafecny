@@ -5,11 +5,7 @@ templates['detail'] = template({"compiler":[7,">= 4.0.0"],"main":function(contai
 
   return "<table class=\"table table-bordered table-striped \">\n  <tr><td class=\"col-xs-2\">Facility name</td><td><strong>"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.Details : depth0)) != null ? stack1.operation_name : stack1), depth0))
-    + "<strong></td></tr>\n  <tr><td class=\"col-xs-2\">Shareable link</td><td><a title=\"Copy this link to share results\" href=\"http://eatsafecny.org/?id="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.Details : depth0)) != null ? stack1.nys_health_operation_id : stack1), depth0))
-    + "\">http://eatsafecny.org/?id="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.Details : depth0)) != null ? stack1.nys_health_operation_id : stack1), depth0))
-    + "</a></td></tr>\n  <tr><td class=\"col-xs-2\">Address</td><td><a title=\"Opens in Google Maps\" target=\"_blank\" href=\"https://www.google.com/maps/place/"
+    + "<strong></td></tr>\n  <tr><td class=\"col-xs-2\">Address</td><td><a title=\"Opens in Google Maps\" target=\"_blank\" href=\"https://www.google.com/maps/place/"
     + ((stack1 = (helpers.makeAddressString || (depth0 && depth0.makeAddressString) || alias3).call(depth0,(depth0 != null ? depth0.Details : depth0),{"name":"makeAddressString","hash":{},"data":data})) != null ? stack1 : "")
     + "\">"
     + ((stack1 = (helpers.makeAddressString || (depth0 && depth0.makeAddressString) || alias3).call(depth0,(depth0 != null ? depth0.Details : depth0),{"name":"makeAddressString","hash":{},"data":data})) != null ? stack1 : "")

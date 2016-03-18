@@ -12,7 +12,7 @@
 <tbody>
 	{{#each Places.places}}
 	<tr>
-	  <td class="col-xs-3"><a class="details" id="{{nys_health_operation_id}}" href="#">{{operation_name}}</td>
+	  <td class="col-xs-3"><a class="details" href="{{{getBaseUrl}}}?id={{nys_health_operation_id}}">{{operation_name}}</td>
 	  <td class="col-xs-3">{{{toTitleCase facility_address}}}</td>
 	  <td class="col-xs-3">{{{toTitleCase city}}}</td>
 	  <td class="col-xs-3">{{{formatDate date}}}</td>

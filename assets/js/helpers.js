@@ -20,3 +20,8 @@ Handlebars.registerHelper('highlightCritical', function(str) {
 Handlebars.registerHelper('makeAddressString', function(str) {
 	return Handlebars.helpers.toTitleCase(str.facility_address) + " " + Handlebars.helpers.toTitleCase(str.city) + ", " + str.food_service_facility_state + " " + str.zip_code;
 });
+
+// Helper method to render base URL for site.
+Handlebars.registerHelper('getBaseUrl', function() {
+	return window.location.href.split('?')[0];
+});

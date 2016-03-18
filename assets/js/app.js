@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  // Hide the promt telling the user that data is being fetched.
+  // Hide the prompt telling the user that data is being fetched.
   $(".working").hide();
 
   // Handlers for search field.
@@ -10,7 +10,7 @@ $(document).ready(function() {
       $("#name").addClass("error");
     }
     else {
-      searchList(searchText);
+      window.location.replace(url_base(window.location.href) + '?search=' + searchText);
     }
   });
 
@@ -27,16 +27,15 @@ $(document).ready(function() {
     $(this).removeClass("error");
   });
 
-  // Handler for displaying inspection details.
-  $(".display").on("click", ".details", function() {
-    getInspectionDetails($(this).attr("id"));
-  });
-
   // If ID parameter used, display detailed results.
-  var id = url_query('id');
-  if(id) {
-    getInspectionDetails(id);
-  } 
+  if(url_query('id')) {
+    getInspectionDetails(url_query('id'));
+  }
+
+  // If search parameter used, display search results.
+  else if(url_query('search')) {
+    searchList(url_query('search'));
+  }
   
   // Display worst offenders and most recent inspections on home page.
   else {
@@ -74,11 +73,10 @@ function getPlaceList (url, id, title) {
     results.places = json
     placesList = Handlebars.templates.list({ Places : results });
     $(id).append(placesList);
-    $("#search").text("Search");
   })
 }
 
-// Get details of specific inspection.
+// Method to get details of specific inspection.
 function getInspectionDetails(id) {
   var url = base_url + '?nys_health_operation_id=' + id;
   requestJSON(url, function(json) {
@@ -109,9 +107,9 @@ function clearContents() {
 }
 
 // Parse URL Queries
-function url_query( query ) {
+function url_query(query) {
     query = query.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
-    var expr = "[\\?&]"+query+"=([^&#]*)";
+    var expr = "[\\?&]" + query + "=([^&#]*)";
     var regex = new RegExp( expr );
     var results = regex.exec( window.location.href );
     if ( results !== null ) {
@@ -119,5 +117,10 @@ function url_query( query ) {
     } else {
         return false;
     }
+}
+
+// Get base URL without querystring parameters.
+function url_base(url) {
+  return window.location.href.split('?')[0];
 }
 
