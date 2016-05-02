@@ -1,6 +1,9 @@
 body {
 	margin-top: 65px;
 }
+#results {
+	margin-top: 15px;
+}
 .working {
 	margin-top: 15px;
 	text-align: center;

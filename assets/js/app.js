@@ -12,11 +12,15 @@ $(document).ready(function() {
   else if(url_query('search')) {
     searchList(url_query('search'));
   }
-  
-  // Display worst offenders and most recent inspections on home page.
-  else {
-    worstOffenders();
-    mostRecent();
+
+  // If recent parameter is used, display most recent results.
+  else if(url_query('recent')) {
+    mostRecent(url_query('limit'));
+  }
+
+  // If worst parameter is used, display worst results.
+  else if(url_query('worst')) {
+    worstOffenders(url_query('limit'));
   }
 
   // Handlers for search field.
@@ -50,21 +54,21 @@ var base_url = 'https://health.data.ny.gov/resource/cnih-y5dw.json';
 var query_base = '?county=Onondaga&$select=operation_name,%20nys_health_operation_id,%20facility_address,%20city,%20date';
 
 // Display worst offenders on page load.
-function worstOffenders() {
-  var url = base_url + query_base + '&$order=total_critical_violations%20DESC&$limit=5';
-  getPlaceList(url, "#worst", "Worst Offenders");
+function worstOffenders(limit) {
+  var url = base_url + query_base + '&$order=total_critical_violations%20DESC&$limit=' + limit;
+  getPlaceList(url, "worst-list", "Worst Offenders");
 }
 
 // Get most recent inspections on page load.
-function mostRecent() {
-  var url = base_url +  query_base + '&$order=date%20DESC&$limit=5';
-  getPlaceList(url, "#recent", "Most Recent");
+function mostRecent(limit) {
+  var url = base_url +  query_base + '&$order=date%20DESC&$limit=' + limit;
+  getPlaceList(url, "recent-list", "Most Recent");
 }
 
 // Get list of inspections by name.
 function searchList(name) {
   var url = base_url +  query_base + '&$where=starts_with(operation_name,%20%27' + name + '%27)';
-  getPlaceList(url, "#results", "Results");
+  getPlaceList(url, "search-list", "Results");
 }
 
 // Method to get list of inspections.
@@ -73,7 +77,8 @@ function getPlaceList (url, id, title) {
     results.title = title
     results.places = json
     placesList = Handlebars.templates.list({ Places : results });
-    $(id).append(placesList);
+    $("#results").append('<div id="' + id + '"></div>');
+    $('#' + id).append(placesList);
   })
 }
 
@@ -104,7 +109,7 @@ function requestJSON(url, callback) {
 
 // Utility method to clear div contents
 function clearContents() {
-  $(".display div").empty();
+  $("#results div").empty();
 }
 
 // Parse URL Queries
