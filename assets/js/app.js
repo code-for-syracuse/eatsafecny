@@ -1,8 +1,5 @@
 $(document).ready(function() {
 
-  // Hide the prompt telling the user that data is being fetched.
-  $(".working").hide();
-
   // If ID parameter used, display detailed results.
   if(url_query('id')) {
     getInspectionDetails(url_query('id'));
@@ -98,10 +95,10 @@ function requestJSON(url, callback) {
     url: url,
     beforeSend: function() {
       clearContents();
-      $(".working").show();
+      $('.alert-warning').removeClass('hide');
     },
     complete: function(xhr) {
-       $(".working").hide();
+       $('.alert-warning').addClass('hide');
       callback.call(null, xhr.responseJSON);
     }
   });

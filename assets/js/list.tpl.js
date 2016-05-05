@@ -25,7 +25,7 @@ templates['list'] = template({"1":function(container,depth0,helpers,partials,dat
     + ((stack1 = (helpers.formatDate || (depth0 && depth0.formatDate) || alias1).call(depth0,(depth0 != null ? depth0.date : depth0),{"name":"formatDate","hash":{},"data":data})) != null ? stack1 : "")
     + "</td>\n	</tr>\n";
 },"4":function(container,depth0,helpers,partials,data) {
-    return "<div class=\"alert alert-warning working\" role=\"alert\">No results found</div>\n";
+    return "<div class=\"alert alert-danger\" role=\"alert\">No results found</div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 

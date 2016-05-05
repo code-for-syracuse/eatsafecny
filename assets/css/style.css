@@ -4,7 +4,7 @@ body {
 #results {
 	margin-top: 15px;
 }
-.working {
+.alert {
 	margin-top: 15px;
 	text-align: center;
 }
@@ -25,4 +25,7 @@ body {
 
 .error {
 	border-color: red;
+}
+.hide {
+	display: none;
 }
