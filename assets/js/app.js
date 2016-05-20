@@ -10,8 +10,8 @@ $(document).ready(function() {
     searchList(url_query('search'));
   }
 
-  // If recent parameter is used, display most recent results.
-  else if(url_query('recent')) {
+  // If latest parameter is used, display most recent results.
+  else if(url_query('latest')) {
     mostRecent(url_query('limit'));
   }
 
@@ -56,7 +56,7 @@ function worstOffenders(limit) {
   getPlaceList(url, "worst-list", "Worst Offenders");
 }
 
-// Get most recent inspections on page load.
+// Get latest inspections on page load.
 function mostRecent(limit) {
   var url = base_url +  query_base + '&$order=date%20DESC&$limit=' + limit;
   getPlaceList(url, "recent-list", "Most Recent");
