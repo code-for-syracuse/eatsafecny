@@ -1,0 +1,23 @@
+{
+  "name": "eatsafecny",
+  "version": "1.0.0",
+  "description": "A web application that makes it easy to find restaurant inspection results in CNY",
+  "scripts": {
+    "compile": "./node_modules/handlebars/bin/handlebars templates/*.handlebars -f assets/js/templates.js",
+    "start": "./node_modules/http-server/bin/http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UpstateData/eatsafecny.git"
+  },
+  "author": "Mark Headd",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UpstateData/eatsafecny/issues"
+  },
+  "homepage": "https://github.com/UpstateData/eatsafecny",
+  "dependencies": {
+    "handlebars": "^4.0.6",
+    "http-server": "^0.9.0"
+  }
+}

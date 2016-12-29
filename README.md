@@ -6,15 +6,8 @@ If you'd like to help build more apps like this using open data, check out the [
 
 ## Usage
 
-Install handlbars: 
+* Install dependencies: ```npm install```
+* If desired, You can modify the templates used to display information about a specific establishment. 
+* Compile templates: ```npm run compile```
+* Launch the app" ```npm start```
 
-<pre>
-npm install handlebars -g
-</pre>
-
-Modify and precompile templates:
-
-<pre>
-~$ handlebars templates/detail.handlebars -f assets/js/detail.tpl.js
-~$ handlebars templates/list.handlebars -f assets/js/list.tpl.js
-</pre>
