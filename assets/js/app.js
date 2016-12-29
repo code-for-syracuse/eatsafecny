@@ -52,7 +52,7 @@ var query_base = '?county=Onondaga&$select=operation_name,%20nys_health_operatio
 
 // Display worst offenders on page load.
 function worstOffenders(limit) {
-  var url = base_url + query_base + '&$order=total_critical_violations%20DESC&$limit=' + limit;
+  var url = base_url + query_base + '&$where=total_critical_violations>0&$order=total_critical_violations%20DESC&$limit=' + limit;
   getPlaceList(url, "worst-list", "Worst Offenders");
 }
 
@@ -64,7 +64,7 @@ function mostRecent(limit) {
 
 // Get list of inspections by name.
 function searchList(name) {
-  var url = base_url +  query_base + '&$where=starts_with(operation_name,%20%27' + name + '%27)';
+  var url = base_url +  query_base + '&$where=contains(operation_name,%20%27' + name + '%27)';
   getPlaceList(url, "search-list", "Results");
 }
 
