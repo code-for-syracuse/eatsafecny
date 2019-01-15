@@ -50,13 +50,13 @@ $(document).ready(function() {
 var base_url = 'https://health.data.ny.gov/resource/cnih-y5dw.json';
 var query_base = '?county=Onondaga&$select=operation_name,%20nys_health_operation_id,%20facility_address,%20city,%20date';
 
-// Display worst offenders on page load.
+// Get list of worst offenders.
 function worstOffenders(limit) {
   var url = base_url + query_base + '&$where=total_critical_violations>0&$order=total_critical_violations%20DESC&$limit=' + limit;
   getPlaceList(url, "worst-list", "Worst Offenders");
 }
 
-// Get latest inspections on page load.
+// Get list of latest inspections.
 function mostRecent(limit) {
   var url = base_url +  query_base + '&$order=date%20DESC&$limit=' + limit;
   getPlaceList(url, "recent-list", "Most Recent");
@@ -71,12 +71,12 @@ function searchList(name) {
 // Method to get list of inspections.
 function getPlaceList (url, id, title) {
   requestJSON(url, function(json) {
-    results.title = title
-    results.places = json
+    results.title = title;
+    results.places = json;
     placesList = Handlebars.templates.list({ Places : results });
     $("#results").append('<div id="' + id + '"></div>');
     $('#' + id).append(placesList);
-  })
+  });
 }
 
 // Method to get details of specific inspection.

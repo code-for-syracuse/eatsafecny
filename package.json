@@ -18,6 +18,6 @@
   "homepage": "https://github.com/UpstateData/eatsafecny",
   "dependencies": {
     "handlebars": "^4.0.6",
-    "http-server": "^0.9.0"
+    "http-server": "^0.11.1"
   }
 }
