@@ -1,11 +1,11 @@
-(function() { 
+(function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
 templates['detail'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : (container.nullContext || {}), alias4=helpers.helperMissing;
 
-  return "<table class=\"table table-bordered table-striped \">\n  <tr><td class=\"col-xs-2\">Facility name</td><td><strong>"
+  return "<table class=\"table table-bordered table-striped \">\n  <tr><td class=\"col-xs-2\">Facility Name</td><td><strong>"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.Details : depth0)) != null ? stack1.operation_name : stack1), depth0))
-    + "<strong></td></tr>\n  <tr><td class=\"col-xs-2\">Address</td><td><a title=\"Opens in Google Maps\" target=\"_blank\" href=\"https://www.google.com/maps/place/"
+    + "<strong></td></tr>\n  <tr><td class=\"col-xs-2\">Facility Address</td><td><a title=\"Opens in Google Maps\" target=\"_blank\" href=\"https://www.google.com/maps/place/"
     + ((stack1 = (helpers.makeAddressString || (depth0 && depth0.makeAddressString) || alias4).call(alias3,(depth0 != null ? depth0.Details : depth0),{"name":"makeAddressString","hash":{},"data":data})) != null ? stack1 : "")
     + "\">"
     + ((stack1 = (helpers.makeAddressString || (depth0 && depth0.makeAddressString) || alias4).call(alias3,(depth0 != null ? depth0.Details : depth0),{"name":"makeAddressString","hash":{},"data":data})) != null ? stack1 : "")
