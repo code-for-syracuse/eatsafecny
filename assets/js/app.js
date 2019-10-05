@@ -47,8 +47,8 @@ $(document).ready(function() {
 });
 
 // Base URL for API calls.
-var base_url = 'https://health.data.ny.gov/resource/cnih-y5dw.json';
-var query_base = '?county=Onondaga&$select=operation_name,%20nys_health_operation_id,%20facility_address,%20city,%20date';
+var base_url = 'https://health.data.ny.gov/resource/tbxv-5tbd.json';
+var query_base = '?county=ONONDAGA&$select=operation_name,%20nys_health_operation_id,%20facility_address,%20city,%20date';
 
 // Get list of worst offenders.
 function worstOffenders(limit) {
