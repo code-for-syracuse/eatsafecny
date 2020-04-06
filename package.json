@@ -4,7 +4,7 @@
   "description": "A web application that makes it easy to find restaurant inspection results in CNY",
   "scripts": {
     "compile": "./node_modules/handlebars/bin/handlebars templates/*.handlebars -f assets/js/templates.js",
-    "start": "./node_modules/http-server/bin/http-server"
+    "start": "./serve.sh"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/UpstateData/eatsafecny",
   "dependencies": {
-    "handlebars": "^4.7.3",
-    "http-server": "^0.12.1"
+    "handlebars": "^4.7.6"
   }
 }
