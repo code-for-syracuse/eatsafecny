@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/UpstateData/eatsafecny",
   "dependencies": {
-    "handlebars": "^4.7.6"
+    "handlebars": "^4.7.7"
   }
 }
