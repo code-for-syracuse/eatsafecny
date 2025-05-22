@@ -40,6 +40,47 @@ $(document).ready(function() {
 var base_url = 'https://health.data.ny.gov/resource/tbxv-5tbd.json';
 var query_base = '?county=ONONDAGA&$select=operation_name,%20nys_health_operation_id,%20facility_address,%20city,%20date';
 
+// Add global for pagination
+const PAGE_SIZE = 10;
+let currentPage = 1;
+let totalPages = 1;
+let lastResults = [];
+let lastTitle = '';
+
+function renderPagination() {
+  if (totalPages <= 1) {
+    $("#pagination").remove();
+    return;
+  }
+  let paginationHtml = '<nav id="pagination"><ul class="pagination justify-content-center">';
+  for (let i = 1; i <= totalPages; i++) {
+    paginationHtml += `<li class="page-item${i === currentPage ? ' active' : ''}"><a class="page-link" href="#" data-page="${i}">${i}</a></li>`;
+  }
+  paginationHtml += '</ul></nav>';
+  if ($("#pagination").length) {
+    $("#pagination").replaceWith(paginationHtml);
+  } else {
+    $("#results").after(paginationHtml);
+  }
+  $(".page-link").click(function(e) {
+    e.preventDefault();
+    const page = parseInt($(this).data('page'));
+    if (page !== currentPage) {
+      currentPage = page;
+      renderResultsPage();
+    }
+  });
+}
+
+function renderResultsPage() {
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const end = start + PAGE_SIZE;
+  const pagedResults = lastResults.slice(start, end);
+  const placesList = Handlebars.templates.list({ Places: { title: lastTitle, places: pagedResults } });
+  $("#results").empty().append(placesList);
+  renderPagination();
+}
+
 // Get list of worst offenders.
 function worstOffenders(limit) {
   var url = base_url + query_base + '&$where=total_critical_violations>0&$order=total_critical_violations%20DESC&$limit=' + limit;
@@ -61,11 +102,11 @@ function searchList(name) {
 // Method to get list of inspections.
 function getPlaceList (url, id, title) {
   requestJSON(url, function(json) {
-    results.title = title;
-    results.places = json;
-    placesList = Handlebars.templates.list({ Places : results });
-    $("#results").append('<div id="' + id + '"></div>');
-    $('#' + id).append(placesList);
+    lastResults = json;
+    lastTitle = title;
+    currentPage = 1;
+    totalPages = Math.ceil(json.length / PAGE_SIZE);
+    renderResultsPage();
   });
 }
 
