@@ -1,24 +1,11 @@
 $(document).ready(function() {
 
-  // If ID parameter used, display detailed results.
-  if(url_query('id')) {
-    getInspectionDetails(url_query('id'));
-  }
-
-  // If search parameter used, display search results.
-  else if(url_query('search')) {
-    searchList(url_query('search'));
-  }
-
-  // If latest parameter is used, display most recent results.
-  else if(url_query('latest')) {
-    mostRecent(url_query('limit'));
-  }
-
-  // If worst parameter is used, display worst results.
-  else if(url_query('worst')) {
-    worstOffenders(url_query('limit'));
-  }
+  // Concise parameter-based routing
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('id')) return getInspectionDetails(params.get('id'));
+  if (params.get('search')) return searchList(params.get('search'));
+  if (params.get('latest')) return mostRecent(params.get('limit'));
+  if (params.get('worst')) return worstOffenders(params.get('limit'));
 
   // Handlers for search field.
   $("#search").click(function() {
@@ -27,7 +14,10 @@ $(document).ready(function() {
       $("#name").addClass("error");
     }
     else {
-      window.location.replace(url_base(window.location.href) + '?search=' + searchText);
+      // Use URLSearchParams to construct the query string
+      const params = new URLSearchParams(window.location.search);
+      params.set('search', searchText);
+      window.location.replace(url_base(window.location.href) + '?' + params.toString());
     }
   });
 
@@ -111,19 +101,14 @@ function clearContents() {
 
 // Parse URL Queries
 function url_query(query) {
-    query = query.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
-    var expr = "[\\?&]" + query + "=([^&#]*)";
-    var regex = new RegExp( expr );
-    var results = regex.exec( window.location.href );
-    if ( results !== null ) {
-        return results[1];
-    } else {
-        return false;
-    }
+    // Use URLSearchParams for parsing query parameters
+    const params = new URLSearchParams(window.location.search);
+    return params.get(query) || false;
 }
 
 // Get base URL without querystring parameters.
 function url_base(url) {
-  return window.location.href.split('?')[0];
+  // Remove query string from URL
+  return url.split('?')[0];
 }
 
