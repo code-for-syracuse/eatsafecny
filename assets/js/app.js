@@ -4,8 +4,8 @@ $(document).ready(function() {
   const params = new URLSearchParams(window.location.search);
   if (params.get('id')) return getInspectionDetails(params.get('id'));
   if (params.get('search')) return searchList(params.get('search'));
-  if (params.get('latest')) return mostRecent(params.get('limit'));
-  if (params.get('worst')) return worstOffenders(params.get('limit'));
+  if (params.get('latest')) return mostRecent();
+  if (params.get('worst')) return worstOffenders();
 
   // Handlers for search field.
   $("#search").click(function() {
@@ -42,6 +42,7 @@ var query_base = '?county=ONONDAGA&$select=operation_name,%20nys_health_operatio
 
 // Add global for pagination
 const PAGE_SIZE = 10;
+const MAX_SIZE = 100;
 let currentPage = 1;
 let totalPages = 1;
 let lastResults = [];
@@ -83,13 +84,13 @@ function renderResultsPage() {
 
 // Get list of worst offenders.
 function worstOffenders(limit) {
-  var url = base_url + query_base + '&$where=total_critical_violations>0&$order=total_critical_violations%20DESC&$limit=' + limit;
+  var url = base_url + query_base + '&$where=total_critical_violations>0&$order=total_critical_violations%20DESC&$limit=' + MAX_SIZE;
   getPlaceList(url, "worst-list", "Worst Offenders");
 }
 
 // Get list of latest inspections.
 function mostRecent(limit) {
-  var url = base_url +  query_base + '&$order=date%20DESC&$limit=' + limit;
+  var url = base_url +  query_base + '&$order=date%20DESC&$limit=' + MAX_SIZE;
   getPlaceList(url, "recent-list", "Most Recent");
 }
 
