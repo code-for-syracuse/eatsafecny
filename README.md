@@ -1,5 +1,7 @@
 ## Restaurant safety inspection results for CNY
 
+NOTE - this project is no longer active. [See here for current work](https://github.com/mheadd/eatsafecny).
+
 I built this app to demonstrate how to use [open data](http://opendata.guide/) from government to build a useful application. I'd also like to avoid food poisoning if I can.
 
 If you'd like to help build more apps like this using open data, check out the [Upstate Data Project](http://dataupstate.org/).
